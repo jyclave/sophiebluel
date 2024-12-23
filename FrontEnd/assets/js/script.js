@@ -1,10 +1,33 @@
+
+console.log("fichier script.js chargé ");
+
+const divGallery = document.querySelector(".gallery");
+
 function displayWorks() {
-  console.log("fichier script.js chargé ");
-  let divGallery = document.querySelector(".gallery");
-  // suite du code à faire ici pour l instant
-  console.log(fetch("http://localhost:5678/api/works"));
-	//faire un fetch et boucler sur const work//
+fetch("http://localhost:5678/api/works")
+.then ((response) => {
+	return response.json()})
+.then ((works) => {
+	for (const work of works)
+	{
+		const workElement = document.createElement("figure");
+		workElement.innerText = work.name;
+
+		if (divGallery) {
+			divGallery.appendChild(workElement);
+			console.log(work)
+		}
+
+	}
 }
+
+
+
+)
+}
+
+	//faire un fetch et boucler sur const work//
+
 
 displayWorks();
 
@@ -30,6 +53,7 @@ function displayCategories() {
 	});
 }
 displayCategories();
+
 
 
 
