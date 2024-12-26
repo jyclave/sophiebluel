@@ -17,19 +17,15 @@ fetch("http://localhost:5678/api/works")
 			divGallery.appendChild(workElement);
 			console.log(work)
 		}
-
 	}
-}
-
-
-
-)
+})
 }
 
 	//faire un fetch et boucler sur const work//
 
 
 displayWorks();
+
 
 const filtersElement = document.querySelector(".filters");// emplacement pour ajouter les buttons//
 
