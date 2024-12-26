@@ -137,16 +137,15 @@ li:hover {
 	
 }
 .category-button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	height: 40px;
 	font-family: 'Syne';
+	border: 1px solid #1D6154;
 	color: #1D6154;
 	font-size: 16px;
 	background-color: white;
 	border-radius: 50px;
 	cursor: pointer;
+	padding: 7px 15px;
 }
 .category-button:hover {
 	background-color: #1D6154;

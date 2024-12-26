@@ -31,26 +31,33 @@ fetch("http://localhost:5678/api/works")
 
 displayWorks();
 
-const filtersElement = document.querySelector(".filters");// emplacement pour ajouter les buttons//
+
+const filtersElement = document.querySelector(".filters"); // Emplacement pour ajouter les boutons
 
 function displayCategories() {
+	// Vérifie si l'emplacement existe
+	if (!filtersElement) return;
 
+	// Ajouter le bouton "Tous" manuellement
+	const button = document.createElement("button");
+	button.innerText = "Tous";
+	button.classList.add("category-button");
+	filtersElement.appendChild(button);
+
+	// Charger et afficher les catégories dynamiquement
 	fetch("http://localhost:5678/api/categories")
-	.then ((response) => {
-	return response.json()})
-	.then ((categories) => {
-		for (const category of categories) //a chaque tour de boucle sur categories on stocke les informations dans une variable category//
-		{
-			const filterElement = document.createElement("button");
-		filterElement.innerText = category.name;
-		filterElement.classList.add("category-button");
+		.then((response) => response.json())
+		.then((categories) => {
+			for (const category of categories) {
+				const filterElement = document.createElement("button");
+				filterElement.innerText = category.name;
+				filterElement.classList.add("category-button");
 
-		if (filtersElement) {
-			filtersElement.appendChild(filterElement);
-		console.log(category)		
-		}
-		}
-		
-	});
+				// Ajouter chaque bouton à l'élément parent
+				filtersElement.appendChild(filterElement);
+				console.log(category);
+			}
+		});
 }
+
 displayCategories();
