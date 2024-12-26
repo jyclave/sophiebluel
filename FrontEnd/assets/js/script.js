@@ -17,15 +17,19 @@ fetch("http://localhost:5678/api/works")
 			divGallery.appendChild(workElement);
 			console.log(work)
 		}
+
 	}
-})
+}
+
+
+
+)
 }
 
 	//faire un fetch et boucler sur const work//
 
 
 displayWorks();
-
 
 const filtersElement = document.querySelector(".filters");// emplacement pour ajouter les buttons//
 
@@ -39,6 +43,7 @@ function displayCategories() {
 		{
 			const filterElement = document.createElement("button");
 		filterElement.innerText = category.name;
+		filterElement.classList.add("category-button");
 
 		if (filtersElement) {
 			filtersElement.appendChild(filterElement);
@@ -49,21 +54,3 @@ function displayCategories() {
 	});
 }
 displayCategories();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
