@@ -1,0 +1,108 @@
+const filtersElement = document.querySelector(".filters");// emplacement pour ajouter les buttons//
+
+function displayCategories() {
+
+  fetch("http://localhost:5678/api/categories")
+  .then ((response) => {
+  return response.json()})
+  .then ((categories) => {
+    for (const category of categories) //a chaque tour de boucle sur categories on stocke les informations dans une variable category//
+    {
+      const filterElement = document.createElement("button");
+    filterElement.innerText = category.name;
+    filterElement.classList.add("category-button");
+
+    if (filtersElement) {
+      filtersElement.appendChild(filterElement);
+    console.log(category)   
+    }
+    }
+    
+  });
+}
+displayCategories();
+
+
+
+
+
+const divGallery = document.querySelector(".gallery");
+
+function displayWorks() {
+fetch("http://localhost:5678/api/works")
+.then ((response) => {
+	return response.json()})
+.then ((works) => {
+	for (const work of works)
+	{
+		const workElement = document.createElement("figure");
+		workElement.innerText = work.name;
+
+		if (divGallery) {
+			divGallery.appendChild(workElement);
+			console.log(work)
+		}
+
+	}
+}
+
+
+
+)
+}
+
+	//faire un fetch et boucler sur const work//
+
+
+displayWorks();
+
+
+
+
+console.log("fichier login js chargé");
+
+const form = document.querySelector("form");
+
+function userLogin() {
+  // Ajout d'un écouteur d'événement pour soumettre le formulaire
+  form.addEventListener("submit", (event) => {
+    event.preventDefault(); // Empêche le rechargement de la page
+
+    // Récupérer les valeurs saisies par l'utilisateur
+    const email = form.querySelector("input[name='email']").value;
+    const password = form.querySelector("input[name='password']").value;
+
+    // Préparer les données pour la requête
+    const userData = {
+      email: email,
+      password: password,
+    };
+
+    // Effectuer une requête POST vers l'API
+    fetch("http://localhost:5678/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData), // Convertir les données en JSON
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erreur de connexion");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Connexion réussie :", data);
+        localStorage.setItem('token' , data.token);
+        localStorage.setItem('userId' , data.userId);
+        location.href = 'index.html';
+      })
+      .catch((error) => {
+        console.error("Erreur :", error.message);
+        // Afficher un message d'erreur à l'utilisateur
+      });
+  });
+}
+
+userLogin();

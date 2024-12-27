@@ -84,6 +84,9 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
+a {
+	text-decoration: none;
+}
 nav ul {
 	display: flex;
 	align-items: center;
@@ -98,6 +101,13 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+.insta-logo {
+	width: 19px;
+	height: 19px;
+	margin-top: 5px;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;

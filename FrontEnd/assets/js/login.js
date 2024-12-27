@@ -27,22 +27,39 @@ function userLogin() {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Erreur de connexion");
+          // Gestion des alertes selon le code d'erreur
+          switch (response.status) {
+            case 401:
+              alert("Mot de passe incorrect.")
+              break;
+            case 404:
+              alert("Email incorrect.");
+              break;
+            case 200:
+                console.log("Authentification réussie"); 
+            default:
+              alert("Une erreur inconnue s'est produite.");
+          }
+          throw new Error(`Erreur HTTP : ${response.status}`);
         }
         return response.json();
       })
       .then((data) => {
         console.log("Connexion réussie :", data);
-        // Traiter la réponse (par exemple, rediriger l'utilisateur)
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.userId);
+        location.href = "index.html";
       })
       .catch((error) => {
         console.error("Erreur :", error.message);
-        // Afficher un message d'erreur à l'utilisateur
+        // Le message d'erreur est déjà affiché via alert.
       });
   });
 }
 
 userLogin();
+
+
 
 
 

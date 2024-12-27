@@ -10,6 +10,8 @@ function displayWorks() {
             for (const work of works) {
                 // Créez un élément figure
                 const workElement = document.createElement("figure");
+                workElement.setAttribute('class', `work-item category-id-0 category-id-${work.categoryId}`);
+                workElement.setAttribute('id', `work-item-${work.id}`);
 
                 // Ajoutez une image
                 const imgElement = document.createElement("img");
