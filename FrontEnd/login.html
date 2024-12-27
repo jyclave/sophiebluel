@@ -31,10 +31,10 @@
         <h2>Log In</h2>
         <form action="#" method="post">
           <label for="email">E-mail</label>
-          <input type="text" name="email" id="email">
-          <label for="motdepasse">Mot de passe</label>
-          <input type="email" name="email" id="email">
-          <input type="submit" value="Se connecter">
+          <input type="email" name="email" id="email" required>
+          <label for="password">Mot de passe</label>
+          <input type="password" name="password" id="password" required>
+          <input type="submit" id=" submit" value="Se connecter">
         </form>
         <h3 class="mot-oublie">Mot de passe oublié</h3>
       </section>
@@ -44,7 +44,7 @@
     <footer class="footer-container">
       <nav>
         <ul>
-          <li>Mentions Légales</li>
+          <li><a href="#">Mentions légales</a></li>
         </ul>
       </nav>
     </footer>

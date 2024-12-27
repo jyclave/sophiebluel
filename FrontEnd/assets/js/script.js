@@ -4,32 +4,41 @@ console.log("fichier script.js chargé ");
 const divGallery = document.querySelector(".gallery");
 
 function displayWorks() {
-fetch("http://localhost:5678/api/works")
-.then ((response) => {
-	return response.json()})
-.then ((works) => {
-	for (const work of works)
-	{
-		const workElement = document.createElement("figure");
-		workElement.innerText = work.name;
+    fetch("http://localhost:5678/api/works")
+        .then((response) => response.json())
+        .then((works) => {
+            for (const work of works) {
+                // Créez un élément figure
+                const workElement = document.createElement("figure");
 
-		if (divGallery) {
-			divGallery.appendChild(workElement);
-			console.log(work)
-		}
+                // Ajoutez une image
+                const imgElement = document.createElement("img");
+                imgElement.src = work.imageUrl;
+                imgElement.alt = work.name;
 
-	}
+                // Ajoutez un figcaption
+                const captionElement = document.createElement("figcaption");
+                captionElement.innerText = work.title;
+
+                // Assemblez tout
+                workElement.appendChild(imgElement);
+                workElement.appendChild(captionElement);
+
+                // Ajoutez la figure à la galerie
+                if (divGallery) {
+                    divGallery.appendChild(workElement);
+                }
+
+                console.log(work); // Pour débogage
+            }
+        })
+        .catch((error) => {
+            console.error("Erreur lors du chargement des travaux :", error);
+        });
 }
-
-
-
-)
-}
-
-	//faire un fetch et boucler sur const work//
-
 
 displayWorks();
+
 
 
 const filtersElement = document.querySelector(".filters"); // Emplacement pour ajouter les boutons
