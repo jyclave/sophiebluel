@@ -27,13 +27,13 @@ function userLogin() {
     })
       .then((response) => {
         if (!response.ok) {
-          // Gestion des alertes selon le code d'erreur
+          // modification des case 401 et 404
           switch (response.status) {
             case 401:
-              alert("Mot de passe incorrect.")
+              alert("Email ou mot de passe incorrect.");
               break;
             case 404:
-              alert("Email incorrect.");
+              alert("Utilisateur non trouvé. Vérifiez votre email.");
               break;
             case 200:
                 console.log("Authentification réussie"); 

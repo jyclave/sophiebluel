@@ -42,7 +42,6 @@ function displayWorks() {
 displayWorks();
 
 
-
 const filtersElement = document.querySelector(".filters"); // Emplacement pour ajouter les boutons
 
 function displayCategories() {
@@ -52,23 +51,62 @@ function displayCategories() {
 	// Ajouter le bouton "Tous" manuellement
 	const button = document.createElement("button");
 	button.innerText = "Tous";
-	button.classList.add("category-button");
+	button.classList.add("category-button", "work-filter", "filters-design", "filter-active", "filter-all");
+	button.setAttribute("data-filter", "all");
 	filtersElement.appendChild(button);
+
+	// Ajouter un gestionnaire d'événement pour le bouton "Tous"
+	button.addEventListener("click", function (event) {
+		event.preventDefault();
+		// Gérer les classes actives
+		document.querySelectorAll(".work-filter").forEach((workFilter) => {
+			workFilter.classList.remove("filter-active");
+		});
+		event.target.classList.add("filter-active");
+
+		// Afficher tous les éléments de la galerie
+		document.querySelectorAll(".work-item").forEach((workItem) => {
+			workItem.style.display = "block"; // Afficher tous les éléments
+		});
+	});
 
 	// Charger et afficher les catégories dynamiquement
 	fetch("http://localhost:5678/api/categories")
 		.then((response) => response.json())
 		.then((categories) => {
-			for (const category of categories) {
+			categories.forEach((category) => {
 				const filterElement = document.createElement("button");
 				filterElement.innerText = category.name;
-				filterElement.classList.add("category-button");
+				filterElement.classList.add("category-button", "work-filter", "filters-design");
+				filterElement.setAttribute("data-filter", category.id);
 
 				// Ajouter chaque bouton à l'élément parent
 				filtersElement.appendChild(filterElement);
-				console.log(category);
-			}
+
+				// Ajouter un gestionnaire d'événement pour chaque catégorie
+				filterElement.addEventListener("click", function (event) {
+					event.preventDefault();
+					// Gérer les classes actives
+					document.querySelectorAll(".work-filter").forEach((workFilter) => {
+						workFilter.classList.remove("filter-active");
+					});
+					event.target.classList.add("filter-active");
+
+					// Filtrer les éléments de la galerie selon la catégorie
+					let categoryId = filterElement.getAttribute("data-filter");
+					document.querySelectorAll(".work-item").forEach((workItem) => {
+						workItem.style.display = "none";
+					});
+					document.querySelectorAll(`.work-item.category-id-${categoryId}`).forEach((workItem) => {
+						workItem.style.display = "block";
+					});
+				});
+			});
+		})
+		.catch((err) => {
+			console.log(err);
 		});
 }
 
 displayCategories();
+
