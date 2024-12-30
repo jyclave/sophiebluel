@@ -30,13 +30,9 @@ function userLogin() {
           // modification des case 401 et 404
           switch (response.status) {
             case 401:
+            case 404:
               alert("Email ou mot de passe incorrect.");
               break;
-            case 404:
-              alert("Utilisateur non trouvé. Vérifiez votre email.");
-              break;
-            case 200:
-                console.log("Authentification réussie"); 
             default:
               alert("Une erreur inconnue s'est produite.");
           }
@@ -47,7 +43,6 @@ function userLogin() {
       .then((data) => {
         console.log("Connexion réussie :", data);
         localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.userId);
         location.href = "index.html";
       })
       .catch((error) => {
@@ -58,6 +53,7 @@ function userLogin() {
 }
 
 userLogin();
+
 
 
 

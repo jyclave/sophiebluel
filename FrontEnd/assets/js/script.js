@@ -51,7 +51,7 @@ function displayCategories() {
 	// Ajouter le bouton "Tous" manuellement
 	const button = document.createElement("button");
 	button.innerText = "Tous";
-	button.classList.add("category-button", "work-filter", "filters-design", "filter-active", "filter-all");
+	button.classList.add("category-button", "filter-active");
 	button.setAttribute("data-filter", "all");
 	filtersElement.appendChild(button);
 
@@ -77,7 +77,7 @@ function displayCategories() {
 			categories.forEach((category) => {
 				const filterElement = document.createElement("button");
 				filterElement.innerText = category.name;
-				filterElement.classList.add("category-button", "work-filter", "filters-design");
+				filterElement.classList.add("category-button");
 				filterElement.setAttribute("data-filter", category.id);
 
 				// Ajouter chaque bouton à l'élément parent
@@ -109,4 +109,44 @@ function displayCategories() {
 }
 
 displayCategories();
+
+function updateLoginState() {
+  const token = localStorage.getItem("token"); // Vérifie si un token est présent
+  const loginItem = document.querySelector("li#login"); // Cible l'élément <li> avec l'id "login"
+  const topBar = document.querySelector(".hidden"); // Cible l'élément de la top bar avec la classe correspondante
+
+  if (token) {
+    // Si un token est présent, changer en "Logout"
+    loginItem.textContent = "Logout";
+
+    // Afficher la top bar en retirant la classe .hidden
+    if (topBar) {
+      topBar.classList.remove("hidden");
+    }
+
+    // Ajouter un écouteur pour la déconnexion
+    loginItem.addEventListener("click", () => {
+      localStorage.removeItem("token"); // Supprime le token
+      localStorage.removeItem("userId"); // Supprime l'userId
+      alert("Vous êtes déconnecté.");
+      location.reload(); // Recharge la page pour actualiser l'état
+    });
+  } else {
+    // Si aucun token, s'assurer que le texte est "Login"
+    loginItem.textContent = "Login";
+
+    // Masquer la top bar en ajoutant la classe .hidden
+    if (topBar) {
+      topBar.classList.add("hidden");
+    }
+
+    // Ajouter un écouteur pour rediriger vers login.html
+    loginItem.addEventListener("click", () => {
+      location.href = "login.html"; // Redirige vers la page de connexion
+    });
+  }
+}
+
+// Appeler cette fonction dès que la page est chargée
+document.addEventListener("DOMContentLoaded", updateLoginState);
 

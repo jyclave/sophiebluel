@@ -10,27 +10,33 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="assets/js/script.js" defer></script>
   </head>
   <body>
     <header>
-      <nav id="top-bar" class="top-bar-admin">
-        <ul>
-          <li><a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i>Mode édition</a></li>
-          <li><a href="#" class="publish-button">Publier les changements</a></li>
-        </ul>
-      </nav>
-      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-      <nav>
-        <ul>
-          <li><a href="index.html#portefolio">projets</a></li>
-          <li><a href="index.html#contact">contact</a></li>
-          <li><a href="login.html">login</a></li>
-          <li><a href="https://www.instagram.com/" target="_blank"><img class="insta-logo" src="./assets/icons/instagram.png" alt="Instagram"></a></li>
-        </ul>
-      </nav>
+      <div id="top-bar" class="top-bar-admin hidden">
+      <P>
+        <i class="fa-solid fa-pen-to-square"></i> Mode édition
+      </P>
+      </div>
+      <div class="header-container">
+        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+        <nav>
+          <ul>
+            <li><a href="index.html#portefolio">projets</a></li>
+            <li><a href="index.html#contact">contact</a></li>
+            <li id="login"><a href="login.html">login</a></li>
+            <li><a href="https://www.instagram.com/" target="_blank"><img class="insta-logo" src="./assets/icons/instagram.png" alt="Instagram"></a></li>
+          </ul>
+        </nav>       
+      </div>
+
     </header>
     <main>
       <section id="introduction">
@@ -57,10 +63,11 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
-        <div>
-          <a ckass="update-button" href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i>Modifier</a>
-        </div>
+        <h2>Mes Projets
+          <span id="projets-modify" class="projets-modify-admin hidden">
+            <i class="fa-solid fa-pen-to-square"></i> Modifier
+          </span>
+        </h2>
         <div class="filters">
         </div>
         <div class="gallery">
