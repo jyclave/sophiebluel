@@ -150,3 +150,4 @@ function updateLoginState() {
 // Appeler cette fonction dès que la page est chargée
 document.addEventListener("DOMContentLoaded", updateLoginState);
 
+
