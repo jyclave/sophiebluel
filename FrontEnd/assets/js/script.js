@@ -159,10 +159,13 @@ const closeModal = modal.querySelector('.close');
 // Ajouter un écouteur d'événement pour détecter les clics
 modifyButton.addEventListener('click', () => {
    modal.classList.remove('hidden');
+   console.log(modal)
 });
 
     // Ajouter un écouteur d'événement pour fermer la modale
     closeModal.addEventListener('click', () => {
       modal.classList.add('hidden');
+      console.log(closeModal)
   });
+  
   
