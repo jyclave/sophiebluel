@@ -97,13 +97,11 @@ a {
   height: 60px;
   background-color: black;
   color: white;
+  cursor: pointer;  
 }
 .fa-pen-to-square {
   width: 30px ;
   height: 30px;
-}
-.hidden {
-  display: none;
 }
 /**top bar**/
 nav ul {
@@ -155,6 +153,23 @@ li:hover {
   text-align: center;
   margin-bottom: 1em;
 }
+/*icon et modifier même ligne mes Projets*/
+.projets-modify-admin {
+  display: inline-block; 
+  margin-left: 10px; 
+  vertical-align: middle; 
+  text-align: center;
+  color: black;
+  font-size: 16px;
+  margin-top: 10px;
+  font-weight:400;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+
+/*icon et modifier même ligne mes Projets*/
 /* les boutons category start*/
 .filters {
   display: flex;
@@ -255,6 +270,7 @@ footer nav ul {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
+  display: none;
 }
 
 .modal-content {

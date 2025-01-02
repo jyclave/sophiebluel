@@ -151,3 +151,10 @@ function updateLoginState() {
 document.addEventListener("DOMContentLoaded", updateLoginState);
 
 
+// Sélectionner l'élément "modifier"
+const modifyButton = document.getElementById('top-bar');
+
+// Ajouter un écouteur d'événement pour détecter les clics
+modifyButton.addEventListener('click', () => {
+    console.log("J'ai cliqué");
+});
