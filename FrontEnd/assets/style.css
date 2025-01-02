@@ -169,7 +169,7 @@ li:hover {
   display: none;
 }
 
-/*icon et modifier même ligne mes Projets*/
+
 
 /* les boutons category start*/
 .filters {
@@ -263,7 +263,7 @@ footer nav ul {
 
 /* css du modal */
 
-.modal {
+.modal-open {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -271,7 +271,6 @@ footer nav ul {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
 } 
 
 .modal-content {

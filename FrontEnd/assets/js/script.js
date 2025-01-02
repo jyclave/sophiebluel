@@ -153,8 +153,16 @@ document.addEventListener("DOMContentLoaded", updateLoginState);
 
 // Sélectionner l'élément "modifier"
 const modifyButton = document.getElementById('top-bar');
+const modal = document.getElementById('modal1');
+const closeModal = modal.querySelector('.close');
 
 // Ajouter un écouteur d'événement pour détecter les clics
 modifyButton.addEventListener('click', () => {
-    console.log("J'ai cliqué");
+   modal.classList.remove('hidden');
 });
+
+    // Ajouter un écouteur d'événement pour fermer la modale
+    closeModal.addEventListener('click', () => {
+      modal.classList.add('hidden');
+  });
+  
