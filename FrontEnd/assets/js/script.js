@@ -2,6 +2,7 @@
 console.log("fichier script.js chargé ");
 
 const divGallery = document.querySelector(".gallery");
+const divGalleryModal = document.querySelector(".gallery-modal");
 
 function displayWorks() {
     fetch("http://localhost:5678/api/works")
@@ -12,11 +13,20 @@ function displayWorks() {
                 const workElement = document.createElement("figure");
                 workElement.setAttribute('class', `work-item category-id-0 category-id-${work.categoryId}`);
                 workElement.setAttribute('id', `work-item-${work.id}`);
+                workElement.setAttribute('work-id', `${work.id}`);
 
+                const workGalleryElement = document.createElement("figure")
+                workGalleryElement.setAttribute('class', `work-item category-id-0 category-id-${work.categoryId}`);
+                workGalleryElement.setAttribute('id', `work-item-${work.id}`);
+                workGalleryElement.setAttribute('work-id', `${work.id}`);
                 // Ajoutez une image
                 const imgElement = document.createElement("img");
                 imgElement.src = work.imageUrl;
-                imgElement.alt = work.name;
+                imgElement.alt = work.title;
+
+                const imgGalleryElement = document.createElement("img")
+                imgGalleryElement.src = work.imageUrl;
+                imgGalleryElement.alt = work.title;
 
                 // Ajoutez un figcaption
                 const captionElement = document.createElement("figcaption");
@@ -25,10 +35,17 @@ function displayWorks() {
                 // Assemblez tout
                 workElement.appendChild(imgElement);
                 workElement.appendChild(captionElement);
+                workGalleryElement.appendChild(imgGalleryElement);
+
 
                 // Ajoutez la figure à la galerie
                 if (divGallery) {
                     divGallery.appendChild(workElement);
+                }
+               
+
+                if (divGalleryModal) {
+                  divGalleryModal.appendChild(workGalleryElement);
                 }
 
                 console.log(work); // Pour débogage
@@ -51,7 +68,7 @@ function displayCategories() {
 	// Ajouter le bouton "Tous" manuellement
 	const button = document.createElement("button");
 	button.innerText = "Tous";
-	button.classList.add("category-button", "filter-active");
+	button.classList.add("filter-active", "work-filter");
 	button.setAttribute("data-filter", "all");
 	filtersElement.appendChild(button);
 
@@ -77,7 +94,7 @@ function displayCategories() {
 			categories.forEach((category) => {
 				const filterElement = document.createElement("button");
 				filterElement.innerText = category.name;
-				filterElement.classList.add("category-button");
+				filterElement.classList.add("work-filter");
 				filterElement.setAttribute("data-filter", category.id);
 
 				// Ajouter chaque bouton à l'élément parent
@@ -100,7 +117,7 @@ function displayCategories() {
 					document.querySelectorAll(`.work-item.category-id-${categoryId}`).forEach((workItem) => {
 						workItem.style.display = "block";
 					});
-				});
+				});//ajouter ces catégories aussi dans la deuxième moitié modal dans un select avec chaque catégorie dans un option//
 			});
 		})
 		.catch((err) => {
@@ -110,56 +127,19 @@ function displayCategories() {
 
 displayCategories();
 
-function updateLoginState() {
-  const token = localStorage.getItem("token"); // Vérifie si un token est présent
-  const loginItem = document.querySelector("li#login"); // Cible l'élément <li> avec l'id "login"
-  const topBar = document.querySelector(".hidden"); // Cible l'élément de la top bar avec la classe correspondante
 
-  if (token) {
-    // Si un token est présent, changer en "Logout"
-    loginItem.textContent = "Logout";
-
-    // Afficher la top bar en retirant la classe .hidden
-    if (topBar) {
-      topBar.classList.remove("hidden");
-    }
-
-    // Ajouter un écouteur pour la déconnexion
-    loginItem.addEventListener("click", () => {
-      localStorage.removeItem("token"); // Supprime le token
-      localStorage.removeItem("userId"); // Supprime l'userId
-      alert("Vous êtes déconnecté.");
-      location.reload(); // Recharge la page pour actualiser l'état
-    });
-  } else {
-    // Si aucun token, s'assurer que le texte est "Login"
-    loginItem.textContent = "Login";
-
-    // Masquer la top bar en ajoutant la classe .hidden
-    if (topBar) {
-      topBar.classList.add("hidden");
-    }
-
-    // Ajouter un écouteur pour rediriger vers login.html
-    loginItem.addEventListener("click", () => {
-      location.href = "login.html"; // Redirige vers la page de connexion
-    });
-  }
-}
-
-// Appeler cette fonction dès que la page est chargée
-document.addEventListener("DOMContentLoaded", updateLoginState);
 
 
 // Sélectionner l'élément "modifier"
-const modifyButton = document.getElementById('top-bar');
+const modifyButtons = document.querySelectorAll('#top-bar, #span-top-bar');
 const modal = document.getElementById('modal1');
 const closeModal = modal.querySelector('.close');
 
 // Ajouter un écouteur d'événement pour détecter les clics
-modifyButton.addEventListener('click', () => {
+modifyButtons.forEach((modifyButton) => {
+  modifyButton.addEventListener('click', () => {
    modal.classList.remove('hidden');
-   console.log(modal)
+  });
 });
 
     // Ajouter un écouteur d'événement pour fermer la modale

@@ -169,10 +169,8 @@ li:hover {
   cursor: pointer;
 }
 .hidden {
-  display: none;
+  display: none !important; 
 }
-
-
 
 /* les boutons category start*/
 .filters {
@@ -184,7 +182,7 @@ li:hover {
   margin: 20px;
   margin-bottom: 40px;
 }
-.category-button {
+.work-filter {
   height: 40px;
   font-family: 'Syne';
   border: 1px solid #1D6154;
@@ -195,7 +193,7 @@ li:hover {
   cursor: pointer;
   padding: 7px 15px;
 }
-.category-button:focus, .category-button:hover {
+.work-filter:focus, .work-filter:hover {
   background-color: #1D6154;
   color: white;
 	outline: none;
@@ -297,7 +295,7 @@ footer nav ul {
   font-family: work sans;
   font-weight: 100;
   color: black;
-  margin-bottom: 500px;
+  margin-bottom: 50px;
 }
 
 .add-photo {
@@ -324,4 +322,15 @@ footer nav ul {
 
 .close:hover {
   color: rgb(32, 6, 6);
+}
+.gallery-modal {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.gallery-modal img {
+  width: 100%;
 }
