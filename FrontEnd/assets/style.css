@@ -147,8 +147,11 @@ li:hover {
 }
 
 #introduction p {
-  margin-bottom: 0.5em;
+  margin-bottom: 20px;
+  margin-right: 100px;
+  font-size: 16px;
 }
+
 #portfolio h2 {
   text-align: center;
   margin-bottom: 1em;
