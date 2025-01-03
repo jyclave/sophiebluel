@@ -32,10 +32,14 @@ function displayWorks() {
                 const captionElement = document.createElement("figcaption");
                 captionElement.innerText = work.title;
 
+                const iconElement = document.createElement("i");
+                iconElement.classList.add("fa-solid", "fa-trash-can", "overlay-icon");
+
                 // Assemblez tout
                 workElement.appendChild(imgElement);
                 workElement.appendChild(captionElement);
                 workGalleryElement.appendChild(imgGalleryElement);
+                workGalleryElement.appendChild(iconElement);
 
 
                 // Ajoutez la figure à la galerie
