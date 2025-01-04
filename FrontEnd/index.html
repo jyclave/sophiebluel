@@ -103,20 +103,38 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Galerie photos</h2>
-        <div class="gallery-modal">
-        </div>
+        <div class="gallery-modal"></div>
         <hr>
-        <button class="add-photo">Ajouter une photo</button>
+        <button id="open-add-photo-modal" class="add-photo">Ajouter une photo</button>
       </div>
-      <div class="modal-content-add-photo">
-          <span class="close">&times;</span>
-          <span class="left-arrow">&larr;</span>
-          <h2>Ajout photo</h2>
-          <form id="modal-edit-new-form" method="post" action="#" class="modal-content-new-photo">
+    
+      <!-- Modal pour ajouter une photo -->
+      <div id="add-photo-modal" class="modal-content-add-photo">
+        <span class="close">&times;</span>
+        <span class="left-arrow">&larr;</span>
+        <h2>Ajout photo</h2>
+        <form id="modal-edit-new-form" method="post" action="#">
+          <label for="file-input" class="file-label">
             <i id="photo-add-icon" class="fa-regular fa-image"></i>
-            <input id="form-photo" type="submit" accept="image/*, .jpg .jpeg .png" value="+ Ajouter photo" required>
-            <P id="photo-size">jpg, png: 4mo max</P>
-          </form>
+            <span id="form-photo">+ Ajouter photo</span>
+          </label>
+          <input id="file-input" type="file" accept="image/*" style="display: none;" required>
+          <p id="photo-size">jpg, png : 4 Mo max</p>
+        </form>
+        <form id="photo-add-title" action="#" method="post">
+          <label id="label-title" for="title">Titre</label>
+          <input type="text" name="title" id="add-title"/>
+              <!-- Nouveau champ pour la catégorie -->
+          <label id="label-title" for="category">Catégorie</label>
+          <select name="category" id="add-category">
+            <option value=" disabled selected hidden "></option>
+            <option value="architecture">Architecture</option>
+            <option value="portrait">Portrait</option>
+            <option value="autre">Autre</option>
+          </select>       
+        </form>
+        <hr id="straight-line">
+        
       </div>
     </aside>
 

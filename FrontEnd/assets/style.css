@@ -307,7 +307,7 @@ footer nav ul {
   color: white;
   border: none;
   background-color: #1D6154;
-  margin-top: 20px;
+  margin-top: 30px;
   padding: 10px 50px;
   border-radius: 60px;
   cursor: pointer;
@@ -331,6 +331,8 @@ footer nav ul {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
+  margin-bottom: 40px;
+  margin-top: 0px;
 }
 .gallery-modal img {
   width: 100%;
@@ -344,28 +346,29 @@ footer nav ul {
   cursor: pointer;
 
 }
-.modal-content-new-photo {
-  width: 400px; /* Ajuste la largeur */
-  margin: 0 auto; /* Centre horizontalement */
-  padding: 20px; /* Ajoute un peu d'espace interne */
-  background-color: #e8f1f6; /* Couleur de fond */
-}
 
+#modal-edit-new-form {
+  display: block;
+  margin: 0 auto;
+  background-color: #e8f1f6;
+  height: 200px;
+  width: 75%;
+}
 /* Style pour l'icône */
 #photo-add-icon {
   font-size: 70px;
   color: #cbd6dc;
   display: block;
   text-align: center;
-  margin-bottom: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 10Px;
 }
 
 /* Bouton de soumission */
 #form-photo {
-  display: block;
   font-family: work sans;
-  width: 50%;
-  padding: 10px;
+  padding: 10px 30px 10px 30px;
   background-color: #cbd6dc;
   color: #306685;
   border: none;
@@ -379,7 +382,57 @@ footer nav ul {
   color: #444444;
   font-family: work sans;
   font-weight: 400;
+  margin-top: 30px;
 }
+#photo-add-title {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-right: 75px;
+  margin-left: 75px;
+  margin-top: 20px;
+
+}
+#label-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: work sans;
+  font-weight: 500;
+  color:#3D3D3D;
+}
+#add-title {
+  height: 40px;
+  border: 1px solid #ccc; /* Bordure grise */
+  outline: none;
+  margin-bottom: 20px;
+}
+#add-category {
+  appearance: none; /* Masque le style par défaut du navigateur */
+  -webkit-appearance: none; /* Compatibilité avec WebKit */
+  -moz-appearance: none; /* Compatibilité avec Firefox */
+  background: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='gray' d='M6 8l4 4 4-4H6z'/%3E%3C/svg%3E")
+    no-repeat right 10px center; /* Chevron à droite */
+  background-color: #fff; /* Fond blanc */
+  border: 1px solid #ccc; /* Bordure grise */
+  border-radius: 4px; /* Bordure arrondie */
+  padding: 5px 10px; /* Espacement interne */
+  font-size: 1rem; /* Taille du texte */
+  height: 50px;
+}
+
+#add-category:focus {
+  outline: none; /* Supprime le contour bleu par défaut */
+}
+
+option[value=""] {
+  display: none; /* Cache l'option vide dans la liste déroulante */
+}
+
+#straight-line {
+  width: 75%;
+  margin-top: 40px;
+}
+
 
 
  

@@ -157,12 +157,36 @@ arrowModalButton?.addEventListener('click', () => {
 	modalContent.style.display = 'block'; // Masque la section principale
   modalContentAddPhoto.style.display = 'none';
 });
+
+
 // Fermer la modale (tous les boutons close)
 closeModalButtons.forEach((closeModal) => {
   closeModal.addEventListener('click', () => {
     modal.classList.add('hidden');
   });
 });
+
+const fileInput = document.getElementById("file-input");
+const MAX_FILE_SIZE = 4 * 1024 * 1024; // Taille maximale en octets (4 Mo)
+
+fileInput.addEventListener("click", () => {
+    fileInput.value = ""; // Réinitialise la valeur
+});
+
+fileInput.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        if (file.size > MAX_FILE_SIZE) {
+            alert("Le fichier est trop volumineux. La taille maximale autorisée est de 4 Mo.");
+            fileInput.value = ""; // Réinitialise pour permettre une nouvelle sélection
+        } else {
+            alert(`Fichier sélectionné : ${file.name}`);
+        }
+    }
+});
+
+
+
 
 
 
