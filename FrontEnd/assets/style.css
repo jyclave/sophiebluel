@@ -274,7 +274,8 @@ footer nav ul {
   background-color: rgba(0, 0, 0, 0.5);
 } 
 
-.modal-content {
+.modal-content, 
+.modal-content-add-photo {
   position: relative;
   background-color: #fff;
   margin: 10% auto;
@@ -289,7 +290,8 @@ footer nav ul {
 
 }
 
-.modal-content h2 {
+.modal-content h2,
+.modal-content-add-photo h2 {
   margin: 0 0 20px;
   font-size: 26px;
   font-family: work sans;
@@ -330,7 +332,18 @@ footer nav ul {
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
-
 .gallery-modal img {
   width: 100%;
 }
+.left-arrow {
+  position: relative;
+  right: 300px;
+  bottom: 35px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+
+ 

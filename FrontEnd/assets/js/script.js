@@ -131,25 +131,40 @@ function displayCategories() {
 
 displayCategories();
 
-
-
-
-// Sélectionner l'élément "modifier"
 const modifyButtons = document.querySelectorAll('#top-bar, #span-top-bar');
 const modal = document.getElementById('modal1');
-const closeModal = modal.querySelector('.close');
-
-// Ajouter un écouteur d'événement pour détecter les clics
+const closeModalButtons = modal.querySelectorAll('.close');
+const addPhotoButton = modal.querySelector('.add-photo');
+const modalContent = modal.querySelector('.modal-content');
+const modalContentAddPhoto = modal.querySelector('.modal-content-add-photo');
+const arrowModalButton = modal.querySelector('.left-arrow');
+// Ouvrir la modale principale
 modifyButtons.forEach((modifyButton) => {
   modifyButton.addEventListener('click', () => {
-   modal.classList.remove('hidden');
+    modal.classList.remove('hidden');
+    modalContent.style.display = 'block'; // Affiche la section principale
+    modalContentAddPhoto.style.display = 'none'; // Masque la section d'ajout
   });
 });
 
-    // Ajouter un écouteur d'événement pour fermer la modale
-    closeModal.addEventListener('click', () => {
-      modal.classList.add('hidden');
-      console.log(closeModal)
+// Ouvrir la section "modal-content-add-photo" au clic sur "Ajouter une photo"
+addPhotoButton.addEventListener('click', () => {
+  modalContent.style.display = 'none'; // Masque la section principale
+  modalContentAddPhoto.style.display = 'block'; // Affiche la section ajout
+});
+
+arrowModalButton?.addEventListener('click', () => {
+	modalContent.style.display = 'block'; // Masque la section principale
+  modalContentAddPhoto.style.display = 'none';
+});
+// Fermer la modale (tous les boutons close)
+closeModalButtons.forEach((closeModal) => {
+  closeModal.addEventListener('click', () => {
+    modal.classList.add('hidden');
   });
+});
+
+
+
   
   
