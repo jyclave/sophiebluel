@@ -178,37 +178,59 @@ window.addEventListener('click', (event) => {
   }
 });
 
-const fileInput = document.getElementById("form-image"); // ID mis à jour pour le nouvel input
+const fileInput = document.getElementById("form-image");
 const MAX_FILE_SIZE = 4 * 1024 * 1024; // Taille maximale en octets (4 Mo)
-const previewContainer = document.getElementById("modal-edit-new-photo"); // Conteneur de l'aperçu
+const previewContainer = document.getElementById("modal-edit-new-photo");
 
-fileInput.addEventListener("click", () => {
-    fileInput.value = ""; // Réinitialise la valeur
-    previewContainer.innerHTML = ""; // Efface l'aperçu précédent
-});
+// Réinitialisation de l'affichage
+function resetPreview() {
+    previewContainer.innerHTML = `
+        <i id="photo-add-icon" class="fa-regular fa-image"></i>
+        <label id="new-image">+ Ajouter photo</label>
+        <input id="form-image" type="file" name="image" accept="image/*, .jpg, .jpeg, .png" required>
+        <p id="photo-size">jpg, png : 4mo max</p>
+    `;
+    // Re-référencer l'input après sa réinitialisation
+    const newFileInput = previewContainer.querySelector("input[type='file']");
+    newFileInput.addEventListener("click", () => (newFileInput.value = ""));
+    newFileInput.addEventListener("change", handleFileChange);
+}
 
-fileInput.addEventListener("change", (event) => {
+// Gérer le changement de fichier
+function handleFileChange(event) {
     const file = event.target.files[0];
     if (file) {
         if (file.size > MAX_FILE_SIZE) {
             alert("Le fichier est trop volumineux. La taille maximale autorisée est de 4 Mo.");
-            fileInput.value = ""; // Réinitialise pour permettre une nouvelle sélection
-            previewContainer.innerHTML = ""; // Efface l'aperçu précédent
+            resetPreview(); // Réinitialiser si le fichier est invalide
         } else {
             const reader = new FileReader();
             reader.onload = (e) => {
-                previewContainer.innerHTML = ""; // Réinitialise le contenu avant de montrer l'aperçu
+                previewContainer.innerHTML = ""; // Réinitialise l'affichage
                 const img = document.createElement("img");
                 img.src = e.target.result;
                 img.alt = file.name;
                 img.style.maxWidth = "100%";
-                img.style.maxHeight = "200px"; // Ajustez selon vos besoins
+                img.style.maxHeight = "200px";
+
+                const removeButton = document.createElement("button");
+                removeButton.classList.add("delete-photo-button")
+                removeButton.textContent = "Supprimer l'image";
+                removeButton.style.display = "block";
+                removeButton.style.marginTop = "10px";
+                removeButton.addEventListener("click", resetPreview);
+
                 previewContainer.appendChild(img);
+                previewContainer.appendChild(removeButton);
             };
             reader.readAsDataURL(file);
         }
     }
-});
+}
+
+// Ajout des événements au chargement initial
+fileInput.addEventListener("click", () => (fileInput.value = ""));
+fileInput.addEventListener("change", handleFileChange);
 
 
 
