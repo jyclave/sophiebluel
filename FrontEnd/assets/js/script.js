@@ -121,7 +121,8 @@ function displayCategories() {
 					document.querySelectorAll(`.work-item.category-id-${categoryId}`).forEach((workItem) => {
 						workItem.style.display = "block";
 					});
-				});//ajouter ces catégories aussi dans la deuxième moitié modal dans un select avec chaque catégorie dans un option//
+				});
+      //ajouter ces catégories aussi dans la deuxième moitié modal dans un select avec chaque catégorie dans un option//
 			});
 		})
 		.catch((err) => {
@@ -164,6 +165,13 @@ closeModalButtons.forEach((closeModal) => {
   closeModal.addEventListener('click', () => {
     modal.classList.add('hidden');
   });
+});
+
+// Fermer la modale en cliquant à l'extérieur
+window.addEventListener('click', (event) => {
+  if (event.target === modal) { // Vérifie si l'utilisateur clique en dehors de la modale
+    modal.classList.add('hidden');
+  }
 });
 
 const fileInput = document.getElementById("file-input");

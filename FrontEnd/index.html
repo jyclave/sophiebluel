@@ -79,11 +79,11 @@
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>
         <form action="#" method="post">
-          <label for="name">Nom</label>
+          <label id="name">Nom</label>
           <input type="text" name="name" id="name" />
-          <label for="email">Email</label>
+          <label id="email">Email</label>
           <input type="email" name="email" id="email" />
-          <label for="message">Message</label>
+          <label id="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
           <input type="submit" value="Envoyer" />
         </form>
@@ -118,7 +118,7 @@
             <i id="photo-add-icon" class="fa-regular fa-image"></i>
             <span id="form-photo">+ Ajouter photo</span>
           </label>
-          <input id="file-input" type="file" accept="image/*" style="display: none;" required>
+          <input id="file-input" type="file" name="image" accept="image/*, .jpg, .jpeg, .png"  required>
           <p id="photo-size">jpg, png : 4 Mo max</p>
         </form>
         <form id="photo-add-title" action="#" method="post">
@@ -126,15 +126,14 @@
           <input type="text" name="title" id="add-title"/>
               <!-- Nouveau champ pour la catégorie -->
           <label id="label-title" for="category">Catégorie</label>
-          <select name="category" id="add-category">
-            <option value=" disabled selected hidden "></option>
-            <option value="architecture">Architecture</option>
-            <option value="portrait">Portrait</option>
-            <option value="autre">Autre</option>
+          <select name="category" id="add-category" required>
+            <option></option>
+            <option></option>
+            <option></option>
           </select>       
         </form>
         <hr id="straight-line">
-        
+        <button id="apply-button" class="send-button">Valider</button>
       </div>
     </aside>
 

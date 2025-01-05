@@ -294,7 +294,7 @@ footer nav ul {
 .modal-content-add-photo h2 {
   margin: 0 0 20px;
   font-size: 26px;
-  font-family: work sans;
+  font-family: 'work sans';
   font-weight: 100;
   color: black;
   margin-bottom: 50px;
@@ -367,7 +367,7 @@ footer nav ul {
 
 /* Bouton de soumission */
 #form-photo {
-  font-family: work sans;
+  font-family: 'Work sans';
   padding: 10px 30px 10px 30px;
   background-color: #cbd6dc;
   color: #306685;
@@ -380,7 +380,7 @@ footer nav ul {
 }
 #photo-size {
   color: #444444;
-  font-family: work sans;
+  font-family: 'Work sans';
   font-weight: 400;
   margin-top: 30px;
 }
@@ -396,28 +396,27 @@ footer nav ul {
 #label-title {
   font-size: 18px;
   margin-bottom: 10px;
-  font-family: work sans;
+  font-family: 'work sans';
   font-weight: 500;
   color:#3D3D3D;
 }
 #add-title {
   height: 40px;
-  border: 1px solid #ccc; /* Bordure grise */
+  border: 1px solid rgba(0, 0, 0, 0.09); /* Bordure grise */
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
   outline: none;
   margin-bottom: 20px;
+  
 }
 #add-category {
-  appearance: none; /* Masque le style par défaut du navigateur */
-  -webkit-appearance: none; /* Compatibilité avec WebKit */
-  -moz-appearance: none; /* Compatibilité avec Firefox */
-  background: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='gray' d='M6 8l4 4 4-4H6z'/%3E%3C/svg%3E")
-    no-repeat right 10px center; /* Chevron à droite */
   background-color: #fff; /* Fond blanc */
-  border: 1px solid #ccc; /* Bordure grise */
+  border: 1px solid rgba(0, 0, 0, 0.09); /* Bordure grise */
   border-radius: 4px; /* Bordure arrondie */
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
   padding: 5px 10px; /* Espacement interne */
   font-size: 1rem; /* Taille du texte */
   height: 50px;
+  appearance: none;
 }
 
 #add-category:focus {
@@ -427,11 +426,28 @@ footer nav ul {
 option[value=""] {
   display: none; /* Cache l'option vide dans la liste déroulante */
 }
+#file-input {
+  display: none;
+}
 
 #straight-line {
   width: 75%;
   margin-top: 40px;
 }
+.send-button {
+  font-family: 'Syne';
+  padding: 15px 100px 15px 100px;
+  background-color: #a7a7a7;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 14x;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+
 
 
 
