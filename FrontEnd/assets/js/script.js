@@ -122,6 +122,10 @@ function displayCategories() {
 						workItem.style.display = "block";
 					});
 				});
+        const optionElement = document.createElement("option");
+        optionElement.setAttribute("add-category", category.id);
+        optionElement.innerText = category.name;
+        console.log(optionElement);
       //ajouter ces catégories aussi dans la deuxième moitié modal dans un select avec chaque catégorie dans un option//
 			});
 		})

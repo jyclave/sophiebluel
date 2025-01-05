@@ -423,9 +423,6 @@ footer nav ul {
   outline: none; /* Supprime le contour bleu par défaut */
 }
 
-option[value=""] {
-  display: none; /* Cache l'option vide dans la liste déroulante */
-}
 #file-input {
   display: none;
 }
