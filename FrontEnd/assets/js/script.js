@@ -123,7 +123,7 @@ function displayCategories() {
 					});
 				});
         const optionElement = document.createElement("option");
-        optionElement.setAttribute("add-category", category.id);
+        optionElement.setAttribute("form-category", category.id);
         optionElement.innerText = category.name;
         console.log(optionElement);
       //ajouter ces catégories aussi dans la deuxième moitié modal dans un select avec chaque catégorie dans un option//
@@ -178,11 +178,13 @@ window.addEventListener('click', (event) => {
   }
 });
 
-const fileInput = document.getElementById("file-input");
+const fileInput = document.getElementById("form-image"); // ID mis à jour pour le nouvel input
 const MAX_FILE_SIZE = 4 * 1024 * 1024; // Taille maximale en octets (4 Mo)
+const previewContainer = document.getElementById("modal-edit-new-photo"); // Conteneur de l'aperçu
 
 fileInput.addEventListener("click", () => {
     fileInput.value = ""; // Réinitialise la valeur
+    previewContainer.innerHTML = ""; // Efface l'aperçu précédent
 });
 
 fileInput.addEventListener("change", (event) => {
@@ -191,8 +193,19 @@ fileInput.addEventListener("change", (event) => {
         if (file.size > MAX_FILE_SIZE) {
             alert("Le fichier est trop volumineux. La taille maximale autorisée est de 4 Mo.");
             fileInput.value = ""; // Réinitialise pour permettre une nouvelle sélection
+            previewContainer.innerHTML = ""; // Efface l'aperçu précédent
         } else {
-            alert(`Fichier sélectionné : ${file.name}`);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewContainer.innerHTML = ""; // Réinitialise le contenu avant de montrer l'aperçu
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.alt = file.name;
+                img.style.maxWidth = "100%";
+                img.style.maxHeight = "200px"; // Ajustez selon vos besoins
+                previewContainer.appendChild(img);
+            };
+            reader.readAsDataURL(file);
         }
     }
 });
