@@ -35,13 +35,15 @@ function displayWorks() {
                 const iconElement = document.createElement("i");
                 iconElement.classList.add("fa-solid", "fa-trash-can", "overlay-icon");
 
+                 // Ajoutez l'écouteur pour supprimer l'image
+                iconElement.addEventListener("click", () => deleteWork(work.id));
+      
                 // Assemblez tout
                 workElement.appendChild(imgElement);
                 workElement.appendChild(captionElement);
                 workGalleryElement.appendChild(imgGalleryElement);
                 workGalleryElement.appendChild(iconElement);
-
-
+              
                 // Ajoutez la figure à la galerie
                 if (divGallery) {
                     divGallery.appendChild(workElement);
@@ -62,6 +64,34 @@ function displayWorks() {
 
 displayWorks();
 
+
+const token = localStorage.dataToken;
+function deleteWork(workId) {
+
+  fetch(`http://localhost:5678/api/works/${workId}`, {
+      method: "DELETE",
+      headers: {
+          Authorization: "Bearer " + token,
+      }
+  })
+      .then((response) => {
+          if (response.ok) {
+              // Supprimez l'élément de la galerie
+              const workElement = document.querySelector(`#work-item-${workId}`);
+              if (workElement) {
+                  workElement.remove();
+              }
+              console.log(`Travail ${workId} supprimé avec succès.`);
+          } else {
+              console.error(`Erreur lors de la suppression du travail ${workId}.`);
+          }
+      })
+      .catch((error) => {
+          console.error("Erreur lors de la suppression :", error);
+      });
+}
+
+deleteWork();
 
 const filtersElement = document.querySelector(".filters"); // Emplacement pour ajouter les boutons
 
@@ -232,6 +262,55 @@ function handleFileChange(event) {
 // Ajout des événements au chargement initial
 fileInput.addEventListener("click", () => (fileInput.value = ""));
 fileInput.addEventListener("change", handleFileChange);
+
+
+// Sélection du formulaire
+const form = document.getElementById('modal-edit-work-form');
+
+// Écouteur d'événement sur le formulaire
+form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Empêche le rechargement de la page
+    
+    // Récupération des données du formulaire
+    const formTitle = document.getElementById('form-title').value;
+    const formCategory = document.getElementById('form-category').value;
+    const formImage = document.getElementById('form-image').files[0];
+    
+    
+    // Création d'un FormData pour envoyer des données multipart/form-data
+    const formData = new FormData();
+    formData.append('title', formTitle);
+    formData.append('category', formCategory);
+    formData.append('image', formImage);
+    
+    try {
+        // Envoi de la requête POST
+        const response = await fetch('http://localhost:5678/api/works', {
+            method: 'POST',
+            headers: {
+              Accept: "application:json",
+              Authorization: "Bearer " + token,
+            },
+            body: JSON.stringify(formData),
+        });
+
+        // Gestion de la réponse
+        if (response.ok) {
+            const result = await response.json();
+            alert('Travail ajouté avec succès!');
+            console.log(result); // Affiche la réponse pour vérification
+        } else {
+            alert('Erreur lors de l\'ajout du travail.');
+            console.error(await response.text());
+        }
+    } catch (error) {
+        console.error('Erreur réseau :', error);
+        alert('Impossible de se connecter à l\'API.');
+    }
+});
+
+
+
 
 
 

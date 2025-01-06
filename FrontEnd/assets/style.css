@@ -277,16 +277,16 @@ footer nav ul {
 .modal-content, 
 .modal-content-add-photo {
   position: relative;
+  top: 10%;
+  margin: auto;
   background-color: #fff;
-  margin: 10% auto;
-  padding: 50px;
+  padding: 70px 100px 50px 100px;
   border-radius: 8px;
   width: 80%;
-  max-width: 600px;
-  max-height: 600px;
+  max-width: 630px;
+  max-height: 688px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow: auto;
 
 }
 
@@ -326,24 +326,43 @@ footer nav ul {
   color: rgb(32, 6, 6);
 }
 .gallery-modal {
+  position: relative;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-row-gap: 10px;
   margin-bottom: 40px;
   margin-top: 0px;
 }
+.work-item {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+
+.work-item img {
+  width: 100%;
+  height: auto;
+}
+
 .gallery-modal img {
   width: 100%;
 }
-.trash-can {
+.overlay-icon {
   position: absolute;
+  top: 5px; /* Ajustez en fonction de votre design */
+  right: 5px; /* Ajustez en fonction de votre design */
+  color: white; /* Pour rendre l'icône visible */
+  cursor: pointer;
+  font-size: 15px;
+  z-index: 10;
+  background-color: black;
+  padding: 5px;
 }
 .left-arrow {
   position: relative;
-  right: 300px;
-  bottom: 35px;
+  right: 350px;
+  bottom: 54px;
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
@@ -430,10 +449,10 @@ footer nav ul {
 }
 
 #submit-new-work {
-  width: 220px;
+  width: 260px;
 	border-radius: 60px;
 	margin: 30px auto 45px;
-  padding: 10px 70px;
+  padding: 15px 100px;
 	border: none;
 	color: #FFFFFF;
 	font-style: normal;
