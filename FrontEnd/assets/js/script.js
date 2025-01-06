@@ -123,8 +123,9 @@ function displayCategories() {
 					});
 				});
         const optionElement = document.createElement("option");
-        optionElement.setAttribute("form-category", category.id);
+        optionElement.setAttribute("choice-category", category.id);
         optionElement.innerText = category.name;
+        document.querySelector("select.choice-category").appendChild(optionElement);
         console.log(optionElement);
       //ajouter ces catégories aussi dans la deuxième moitié modal dans un select avec chaque catégorie dans un option//
 			});
