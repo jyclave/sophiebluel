@@ -65,33 +65,35 @@ function displayWorks() {
 displayWorks();
 
 
-const token = localStorage.dataToken;
 function deleteWork(workId) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        console.error("Token introuvable dans localStorage. Assurez-vous d'être connecté.");
+        return;
+    }
 
-  fetch(`http://localhost:5678/api/works/${workId}`, {
-      method: "DELETE",
-      headers: {
-          Authorization: "Bearer " + token,
-      }
-  })
-      .then((response) => {
-          if (response.ok) {
-              // Supprimez l'élément de la galerie
-              const workElement = document.querySelector(`#work-item-${workId}`);
-              if (workElement) {
-                  workElement.remove();
-              }
-              console.log(`Travail ${workId} supprimé avec succès.`);
-          } else {
-              console.error(`Erreur lors de la suppression du travail ${workId}.`);
-          }
-      })
-      .catch((error) => {
-          console.error("Erreur lors de la suppression :", error);
-      });
+    fetch(`http://localhost:5678/api/works/${workId}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    })
+        .then((response) => {
+            if (response.ok) {
+                // Supprimez l'élément de la galerie
+                const workElement = document.querySelector(`#work-item-${workId}`);
+                if (workElement) {
+                    workElement.remove();
+                }
+                console.log(`Travail ${workId} supprimé avec succès.`);
+            } else {
+                console.error(`Erreur lors de la suppression du travail ${workId}.`);
+            }
+        })
+        .catch((error) => {
+            console.error("Erreur lors de la suppression :", error);
+        });
 }
-
-deleteWork();
 
 const filtersElement = document.querySelector(".filters"); // Emplacement pour ajouter les boutons
 
