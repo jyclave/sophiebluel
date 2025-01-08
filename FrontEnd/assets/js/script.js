@@ -264,8 +264,8 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault(); // Empêche le rechargement de la page
             
             const formTitle = document.getElementById("form-title").value;
-            const formCategory = document.getElementById("form-category").value;
-            
+            const formCategory = document.getElementById("form-category").value;           
+            const formImage = fileInput.files[0];
 
             const token = localStorage.getItem("token");
             if (!token) {
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const formImage = fileInput.files[0];
+
             const formData = new FormData();
             formData.append("image", formImage);
             console.log(formImage);
@@ -291,17 +291,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 if (response.ok) {
-                    const result = await response.json();
                     alert("Travail ajouté avec succès !");
-                    form.reset(); // Réinitialisation du formulaire
                     resetPreview(); // Réinitialisation de la prévisualisation
-                } else {
-                    alert("Erreur lors de l'ajout du travail.");
-                    console.error(await response.text());
-                }
+                } else if (response.status === 400) {
+                    alert("Merci de remplir tous les champs");
+                } else if (response.status === 500) {
+                    alert("Erreur serveur");
+                } else if (response.status === 401) {
+                    alert("Vous n'êtes pas autorisé à ajouter un projet");
+                    window.location.href = "login.html";
+            }
             } catch (error) {
                 console.error("Erreur réseau :", error);
-                alert("Impossible de se connecter à l'API.");
+
             }
         });
     }
