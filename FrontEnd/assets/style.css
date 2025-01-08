@@ -199,6 +199,10 @@ li:hover {
 	outline: none;
   transition: background-color 1s ease, transform 2s ease;
 }
+.filter-active {
+  background-color: #1D6154;
+  color: white;
+}
 /*les boutons category end*/
 
 .gallery {
@@ -459,6 +463,7 @@ footer nav ul {
 	font-weight: 700;
 	font-size: 14px;
 	background-color: #A7A7A7;
+  cursor: pointer;
 }
 
 #submit-new-work:focus {
@@ -471,12 +476,3 @@ footer nav ul {
   appearance: none;
 }
 
-.delete-photo-button {
-  font-family: "work sans";
-  padding: 5px 10px;
-  background-color: #A7A7A7;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-}
