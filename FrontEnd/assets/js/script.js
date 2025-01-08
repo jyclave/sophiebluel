@@ -341,6 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const formData = new FormData();
             formData.append("image", formImage);
+            console.log(formImage);
             formData.append("title", formTitle);
             formData.append("category", formCategory);
             console.log("FormData envoyé :", Array.from(formData.entries()));
