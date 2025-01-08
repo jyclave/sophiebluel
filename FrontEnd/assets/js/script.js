@@ -343,14 +343,15 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append("image", formImage);
             formData.append("title", formTitle);
             formData.append("category", formCategory);
-
+            console.log("FormData envoyé :", Array.from(formData.entries()));
             try {
                 const response = await fetch("http://localhost:5678/api/works", {
                     method: "POST",
                     headers: {
+                        Accept: "application/json",
                         Authorization: "Bearer " + token,
                     },
-                    body: formData,
+                    body: JSON.stringify(formData),
                 });
 
                 if (response.ok) {
