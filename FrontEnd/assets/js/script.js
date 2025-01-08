@@ -246,15 +246,7 @@ function handleFileChange(event) {
                 img.style.maxWidth = "100%";
                 img.style.maxHeight = "200px";
 
-                const removeButton = document.createElement("button");
-                removeButton.classList.add("delete-photo-button")
-                removeButton.textContent = "Supprimer l'image";
-                removeButton.style.display = "block";
-                removeButton.style.marginTop = "10px";
-                removeButton.addEventListener("click", resetPreview);
-
                 previewContainer.appendChild(img);
-                previewContainer.appendChild(removeButton);
             };
             reader.readAsDataURL(file);
         }
@@ -265,60 +257,7 @@ function handleFileChange(event) {
 fileInput.addEventListener("click", () => (fileInput.value = ""));
 fileInput.addEventListener("change", handleFileChange);
 
-
 document.addEventListener("DOMContentLoaded", () => {
-    const fileInput = document.getElementById("form-image");
-    const previewContainer = document.querySelector("#modal-edit-new-photo");
-
-    function handleFileChange(event) {
-        const file = event.target.files[0];
-        if (file) {
-            // Vérification de la taille du fichier
-            if (file.size > 4 * 1024 * 1024) {
-                alert("Le fichier est trop volumineux. La taille maximale autorisée est de 4 Mo.");
-                resetPreview(); // Réinitialiser si le fichier est invalide
-            } else {
-                // Prévisualisation de l'image
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    previewContainer.innerHTML = ""; // Réinitialise l'affichage
-
-                    // Création d'une image pour l'aperçu
-                    const img = document.createElement("img");
-                    img.src = e.target.result;
-                    img.alt = file.name;
-                    img.style.maxWidth = "100%";
-                    img.style.maxHeight = "200px";
-
-                    // Bouton pour supprimer l'image
-                    const removeButton = document.createElement("button");
-                    removeButton.classList.add("delete-photo-button");
-                    removeButton.textContent = "Supprimer l'image";
-                    removeButton.style.display = "block";
-                    removeButton.style.marginTop = "10px";
-
-                    removeButton.addEventListener("click", () => {
-                        resetPreview(); // Réinitialiser la prévisualisation
-                    });
-
-                    previewContainer.appendChild(img);
-                    previewContainer.appendChild(removeButton);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-    }
-
-    function resetPreview() {
-        previewContainer.innerHTML = ""; // Efface l'aperçu
-        fileInput.value = ""; // Réinitialise le champ de fichier
-    }
-
-    // Ajout d'écouteurs pour le champ de fichier
-    fileInput.addEventListener("click", () => (fileInput.value = ""));
-    fileInput.addEventListener("change", handleFileChange);
-
-    // Gestion de la soumission du formulaire
     const form = document.getElementById("modal-edit-work-form");
     if (form) {
         form.addEventListener("submit", async (event) => {
@@ -327,7 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const formTitle = document.getElementById("form-title").value;
             const formCategory = document.getElementById("form-category").value;
 
-            // Vérification si un fichier est sélectionné
             if (!fileInput || fileInput.files.length === 0) {
                 alert("Veuillez sélectionner une image avant de soumettre.");
                 return;
@@ -345,20 +283,20 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append("title", formTitle);
             formData.append("category", formCategory);
             console.log("FormData envoyé :", Array.from(formData.entries()));
+
             try {
                 const response = await fetch("http://localhost:5678/api/works", {
                     method: "POST",
                     headers: {
-                        Accept: "application/json",
+                        Accept: "application/json", 
                         Authorization: "Bearer " + token,
                     },
-                    body: JSON.stringify(formData),
+                    body: formData,
                 });
 
                 if (response.ok) {
                     const result = await response.json();
                     alert("Travail ajouté avec succès !");
-                    console.log(result);
                     form.reset(); // Réinitialisation du formulaire
                     resetPreview(); // Réinitialisation de la prévisualisation
                 } else {
@@ -372,6 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
 
 
 
