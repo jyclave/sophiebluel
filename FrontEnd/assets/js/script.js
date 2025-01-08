@@ -265,18 +265,15 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const formTitle = document.getElementById("form-title").value;
             const formCategory = document.getElementById("form-category").value;
+            
 
-            if (!fileInput || fileInput.files.length === 0) {
-                alert("Veuillez sélectionner une image avant de soumettre.");
-                return;
-            }
             const token = localStorage.getItem("token");
             if (!token) {
                 console.error("Token introuvable dans localStorage. Assurez-vous d'être connecté.");
                 return;
             }
-            const formImage = fileInput.files[0];
 
+            const formImage = fileInput.files[0];
             const formData = new FormData();
             formData.append("image", formImage);
             console.log(formImage);
@@ -288,7 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const response = await fetch("http://localhost:5678/api/works", {
                     method: "POST",
                     headers: {
-                        Accept: "application/json", 
                         Authorization: "Bearer " + token,
                     },
                     body: formData,
@@ -310,6 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
 
 
 
