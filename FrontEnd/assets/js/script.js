@@ -211,11 +211,9 @@ window.addEventListener('click', (event) => {
   }
 });
 
-const fileInput = document.getElementById("form-image");
-const MAX_FILE_SIZE = 4 * 1024 * 1024; // Taille maximale en octets (4 Mo)
+const MAX_FILE_SIZE = 4 * 1024 * 1024; // Taille maximale : 4 Mo
 const previewContainer = document.getElementById("modal-edit-new-photo");
 
-// Réinitialisation de l'affichage
 function resetPreview() {
     previewContainer.innerHTML = `
         <i id="photo-add-icon" class="fa-regular fa-image"></i>
@@ -223,62 +221,68 @@ function resetPreview() {
         <input id="form-image" type="file" name="image" accept="image/*, .jpg, .jpeg, .png" required>
         <p id="photo-size">jpg, png : 4mo max</p>
     `;
-    // Re-référencer l'input après sa réinitialisation
-    const newFileInput = previewContainer.querySelector("input[type='file']");
-    newFileInput.addEventListener("click", () => (newFileInput.value = ""));
+    // Re-référencer le nouvel input
+    const newFileInput = previewContainer.querySelector("#form-image");
     newFileInput.addEventListener("change", handleFileChange);
 }
 
-// Gérer le changement de fichier
 function handleFileChange(event) {
-    const file = event.target.files[0];
-    if (file) {
-        if (file.size > MAX_FILE_SIZE) {
-            alert("Le fichier est trop volumineux. La taille maximale autorisée est de 4 Mo.");
-            resetPreview(); // Réinitialiser si le fichier est invalide
-        } else {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                previewContainer.innerHTML = ""; // Réinitialise l'affichage
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.alt = file.name;
-                img.style.maxWidth = "100%";
-                img.style.maxHeight = "200px";
+    const file = event.target.files ? event.target.files[0] : null;
 
-                previewContainer.appendChild(img);
-            };
-            reader.readAsDataURL(file);
-        }
+    if (!file) return; // Aucun fichier sélectionné
+
+    if (file.size > MAX_FILE_SIZE) {
+        alert("Le fichier est trop volumineux. La taille maximale autorisée est de 4 Mo.");
+        resetPreview();
+        return;
     }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        previewContainer.innerHTML = ""; // Réinitialise l'affichage
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.alt = file.name;
+        img.style.maxWidth = "100%";
+        img.style.maxHeight = "200px";
+
+        previewContainer.appendChild(img);
+    };
+    reader.readAsDataURL(file);
 }
 
-// Ajout des événements au chargement initial
-fileInput.addEventListener("click", () => (fileInput.value = ""));
-fileInput.addEventListener("change", handleFileChange);
-
 document.addEventListener("DOMContentLoaded", () => {
+    const fileInput = document.getElementById("form-image");
+    if (fileInput) {
+        fileInput.addEventListener("change", handleFileChange);
+    }
+
     const form = document.getElementById("modal-edit-work-form");
     if (form) {
         form.addEventListener("submit", async (event) => {
-            event.preventDefault(); // Empêche le rechargement de la page
-            
+            event.preventDefault();
+
             const formTitle = document.getElementById("form-title").value;
-            const formCategory = document.getElementById("form-category").value;           
+            const formCategory = document.getElementById("form-category").value;
+            const fileInput = document.getElementById("form-image").value;
             const formImage = fileInput.files[0];
 
-            const token = localStorage.getItem("token");
-            if (!token) {
-                console.error("Token introuvable dans localStorage. Assurez-vous d'être connecté.");
+            if (!formImage) {
+                alert("Veuillez sélectionner une image.");
                 return;
             }
 
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("Vous devez être connecté pour envoyer un projet.");
+                return;
+            }
 
             const formData = new FormData();
-            formData.append("image", formImage);
-            console.log(formImage);
             formData.append("title", formTitle);
             formData.append("category", formCategory);
+            formData.append("image", formImage);
+            console.log(formImage)
             console.log("FormData envoyé :", Array.from(formData.entries()));
 
             try {
@@ -292,23 +296,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (response.ok) {
                     alert("Travail ajouté avec succès !");
-                    resetPreview(); // Réinitialisation de la prévisualisation
+                    resetPreview();
                 } else if (response.status === 400) {
-                    alert("Merci de remplir tous les champs");
+                    alert("Merci de remplir tous les champs.");
                 } else if (response.status === 500) {
-                    alert("Erreur serveur");
+                    alert("Erreur serveur.");
                 } else if (response.status === 401) {
-                    alert("Vous n'êtes pas autorisé à ajouter un projet");
+                    alert("Vous n'êtes pas autorisé.");
                     window.location.href = "login.html";
-            }
+                }
             } catch (error) {
-                console.error("Erreur réseau :", error);
-
+                alert("Erreur réseau. Veuillez réessayer plus tard.");
+                console.error(error);
             }
         });
     }
 });
-
 
 
 
