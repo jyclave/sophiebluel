@@ -281,7 +281,8 @@ footer nav ul {
 .modal-content, 
 .modal-content-add-photo {
   position: relative;
-  top: 10%;
+  top: 50%;
+  transform: translateY(-50%);
   margin: auto;
   background-color: #fff;
   padding: 70px 100px 50px 100px;
