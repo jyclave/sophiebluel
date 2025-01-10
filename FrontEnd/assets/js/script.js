@@ -17,7 +17,7 @@ function displayWorks() {
 
                 const workGalleryElement = document.createElement("figure")
                 workGalleryElement.setAttribute('class', `work-item category-id-0 category-id-${work.categoryId}`);
-                workGalleryElement.setAttribute('id', `work-item-${work.id}`);
+                workGalleryElement.setAttribute('id', `work-item-modal-${work.id}`);
                 workGalleryElement.setAttribute('work-id', `${work.id}`);
                 // Ajoutez une image
                 const imgElement = document.createElement("img");
@@ -85,6 +85,10 @@ function deleteWork(workId) {
                 if (workElement) {
                     workElement.remove();
                 }
+                const workGaleryElement = document.querySelector(`#work-item-modal-${workId}`);
+                if (workGaleryElement) {
+                    workGaleryElement.remove();
+                }                
                 console.log(`Travail ${workId} supprimé avec succès.`);
             } else {
                 console.error(`Erreur lors de la suppression du travail ${workId}.`);
@@ -193,7 +197,8 @@ addPhotoButton.addEventListener('click', () => {
 
 arrowModalButton?.addEventListener('click', () => {
 	modalContent.style.display = 'block'; // Masque la section principale
-  modalContentAddPhoto.style.display = 'none';
+    modalContentAddPhoto.style.display = 'none';
+    resetPreview();
 });
 
 
@@ -239,7 +244,7 @@ function handleFileChange(event) {
 
     const reader = new FileReader();
     reader.onload = (e) => {
-        previewContainer.innerHTML = ""; // Réinitialise l'affichage
+        /*previewContainer.innerHTML = ""; // Réinitialise l'affichage*/
         const img = document.createElement("img");
         img.src = e.target.result;
         img.alt = file.name;
@@ -264,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const formTitle = document.getElementById("form-title").value;
             const formCategory = document.getElementById("form-category").value;
-            const fileInput = document.getElementById("form-image").value;
+            const fileInput = document.getElementById("form-image");
             const formImage = fileInput.files[0];
 
             if (!formImage) {
@@ -281,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData();
             formData.append("title", formTitle);
             formData.append("category", formCategory);
-            formData.append("image", formImage);
+            formData.append("image", fileInput.files[0]);
             console.log(formImage)
             console.log("FormData envoyé :", Array.from(formData.entries()));
 
