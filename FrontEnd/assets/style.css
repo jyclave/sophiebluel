@@ -253,7 +253,6 @@ input[type="submit"]{
   font-family: 'Syne';
   font-weight: 700;
   color: white;
-  background-color: #1D6154;
   margin : 2em auto ;
   width: 180px;
   text-align: center;
@@ -463,15 +462,18 @@ footer nav ul {
 	font-style: normal;
 	font-weight: 700;
 	font-size: 14px;
-	background-color: #A7A7A7;
+	
+
+}
+
+#submit-new-work.active {
+  background-color: #1D6154; 
   cursor: pointer;
 }
 
-#submit-new-work:focus {
-  background-color: #1D6154;
-  color: white;
-	outline: none;
-  transition: background-color 1s ease, transform 2s ease;
+#submit-new-work {
+  background-color: #ccc; 
+  cursor: not-allowed;
 }
 .appearance-none {
   appearance: none;

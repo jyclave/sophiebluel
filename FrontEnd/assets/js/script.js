@@ -180,6 +180,8 @@ const addPhotoButton = modal.querySelector('.add-photo');
 const modalContent = modal.querySelector('.modal-content');
 const modalContentAddPhoto = modal.querySelector('.modal-content-add-photo');
 const arrowModalButton = modal.querySelector('.left-arrow');
+const modalFormTitle = modal.querySelector('form-title');
+const modalFormCategory = modal.querySelector('form-category');
 // Ouvrir la modale principale
 modifyButtons.forEach((modifyButton) => {
   modifyButton.addEventListener('click', () => {
@@ -198,6 +200,7 @@ addPhotoButton.addEventListener('click', () => {
 arrowModalButton?.addEventListener('click', () => {
 	modalContent.style.display = 'block'; // Masque la section principale
     modalContentAddPhoto.style.display = 'none';
+    submitButton.classList.remove("active");
     resetPreview();
 });
 
@@ -226,11 +229,42 @@ function resetPreview() {
         <input id="form-image" type="file" name="image" accept="image/*, .jpg, .jpeg, .png" required>
         <p id="photo-size">jpg, png : 4mo max</p>
     `;
+     // Réinitialiser les champs texte et sélection
+    document.getElementById("form-title").value = "";
+    document.getElementById("form-category").value = "";
     // Re-référencer le nouvel input
     const newFileInput = previewContainer.querySelector("#form-image");
     newFileInput.addEventListener("change", handleFileChange);
 }
+const form = document.getElementById("modal-edit-work-form");
+const submitButton = document.getElementById("submit-new-work");
+const titleInput = document.getElementById("form-title");
+const categoryInput = document.getElementById("form-category");
+const fileInput = document.getElementById("form-image");
 
+function checkFormValidity() {
+    // Vérifiez si tous les champs requis sont remplis
+    const isTitleFilled = titleInput.value.trim() !== "";
+    const isCategorySelected = categoryInput.value.trim() !== "";
+    const isFileSelected = fileInput.files.length > 0;
+
+    // Active ou désactive le style du bouton
+    if (isTitleFilled && isCategorySelected && isFileSelected) {
+        submitButton.classList.add("active");
+        submitButton.disabled = false;
+    } else {
+        submitButton.classList.remove("active");
+        submitButton.disabled = true;
+    }
+}
+
+// Écoutez les changements dans les champs du formulaire
+[titleInput, categoryInput, fileInput].forEach((input) => {
+    input.addEventListener("input", checkFormValidity);
+});
+
+// Initialisez l'état du bouton au chargement
+document.addEventListener("DOMContentLoaded", checkFormValidity);
 function handleFileChange(event) {
     const file = event.target.files ? event.target.files[0] : null;
 
