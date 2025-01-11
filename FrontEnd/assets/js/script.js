@@ -159,7 +159,7 @@ function displayCategories() {
 					});
 				});
         const optionElement = document.createElement("option");
-        optionElement.setAttribute("choice-category", category.id);
+        optionElement.value = category.id;
         optionElement.innerText = category.name;
         document.querySelector("select.choice-category").appendChild(optionElement);
         console.log(optionElement);
@@ -302,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
 
             const formTitle = document.getElementById("form-title").value;
-            const formCategory = document.getElementById("form-category").value;
+            const formCategory = parseInt(document.getElementById("form-category").value, 10);
             const fileInput = document.getElementById("form-image");
             const formImage = fileInput.files[0];
 
@@ -351,6 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
 
 
 
