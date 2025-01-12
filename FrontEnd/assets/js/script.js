@@ -275,17 +275,26 @@ function handleFileChange(event) {
         resetPreview();
         return;
     }
+    
 
     const reader = new FileReader();
     reader.onload = (e) => {
-        /*previewContainer.innerHTML = ""; // Réinitialise l'affichage*/
+        previewContainer.innerHTML = ""; // Réinitialise l'affichage*/
         const img = document.createElement("img");
         img.src = e.target.result;
         img.alt = file.name;
         img.style.maxWidth = "100%";
         img.style.maxHeight = "200px";
 
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "file";
+        hiddenInput.id = "form-image";
+        hiddenInput.name = "image";
+        hiddenInput.style.display = "none";
+        hiddenInput.files = event.target.files;
+
         previewContainer.appendChild(img);
+        previewContainer.appendChild(hiddenInput);
     };
     reader.readAsDataURL(file);
 }
