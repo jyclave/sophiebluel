@@ -334,6 +334,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 if (response.ok) {
+                    const newWork = await response.json();
+        
+                    // Ajoutez l'image à la galerie immédiatement
+                    const workElement = document.createElement("figure");
+                    workElement.classList.add(`work-item`, `category-id-${newWork.categoryId}`);
+                    workElement.setAttribute("id", `work-item-${newWork.id}`);
+        
+                    const imgElement = document.createElement("img");
+                    imgElement.src = newWork.imageUrl;
+                    imgElement.alt = newWork.title;
+        
+                    const captionElement = document.createElement("figcaption");
+                    captionElement.innerText = newWork.title;
+        
+                    workElement.appendChild(imgElement);
+                    workElement.appendChild(captionElement);
+        
+                    divGallery.appendChild(workElement);
+        
                     alert("Travail ajouté avec succès !");
                     resetPreview();
                 } else if (response.status === 400) {
@@ -348,6 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Erreur réseau. Veuillez réessayer plus tard.");
                 console.error(error);
             }
+
         });
     }
 });
