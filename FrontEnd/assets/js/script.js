@@ -376,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     workGalleryElement.appendChild(imgGalleryElement);
                     divGalleryModal.appendChild(workGalleryElement);
-                    workGalleryElement.appendChild(iconElement);
+                    divGalleryModal.appendChild(iconElement);
 
                     alert("Travail ajouté avec succès !");
                     resetPreview();
