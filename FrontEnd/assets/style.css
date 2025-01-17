@@ -203,7 +203,16 @@ li:hover {
   background-color: #1D6154;
   color: white;
 }
-/*les boutons category end*/
+.work-item {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+
+.work-item img {
+  width: 100%;
+  height: auto;
+}
 
 .gallery {
   width: 100%;
@@ -215,6 +224,8 @@ li:hover {
 
 .gallery img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 
 }
 #contact {
@@ -350,19 +361,11 @@ footer nav ul {
   margin-bottom: 40px;
   margin-top: 0px;
 }
-.work-item {
-  position: relative;
-  display: inline-block;
-  margin: 10px;
-}
-
-.work-item img {
-  width: 100%;
-  height: auto;
-}
 
 .gallery-modal img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .overlay-icon {
   position: absolute;

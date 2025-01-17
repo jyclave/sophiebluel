@@ -374,9 +374,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     const iconElement = document.createElement("i");
                     iconElement.classList.add("fa-solid", "fa-trash-can", "overlay-icon");
 
+                    iconElement.addEventListener("click", () => deleteWork(newWork.id));
+
                     workGalleryElement.appendChild(imgGalleryElement);
+                    workGalleryElement.appendChild(iconElement);
                     divGalleryModal.appendChild(workGalleryElement);
-                    divGalleryModal.appendChild(iconElement);
+
 
                     alert("Travail ajouté avec succès !");
                     resetPreview();
