@@ -361,7 +361,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     workElement.appendChild(captionElement);
         
                     divGallery.appendChild(workElement);
-        
+ 
+                    // Ajoutez l'image à la galerie modal immédiatement
+                    const workGalleryElement = document.createElement("figure")
+                    workGalleryElement.classList.add(`work-item`, `category-id-${newWork.categoryId}`);
+                    workGalleryElement.setAttribute('id', `work-item-modal-${newWork.id}`);
+
+                    const imgGalleryElement = document.createElement("img")
+                    imgGalleryElement.src = newWork.imageUrl;
+                    imgGalleryElement.alt = newWork.title;
+
+                    const iconElement = document.createElement("i");
+                    iconElement.classList.add("fa-solid", "fa-trash-can", "overlay-icon");
+
+                    workGalleryElement.appendChild(imgGalleryElement);
+                    divGalleryModal.appendChild(workGalleryElement);
+               
+
                     alert("Travail ajouté avec succès !");
                     resetPreview();
                 } else if (response.status === 400) {
