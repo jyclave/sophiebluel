@@ -250,6 +250,7 @@ async function handleFormSubmit(event) {
     const title = document.getElementById("form-title").value;
     const category = document.getElementById("form-category").value;
     const image = document.getElementById("form-image").files[0];
+    const submitButton = document.getElementById("submit-new-work");
 
     if (!image) {
         alert("Veuillez sélectionner une image.");
@@ -284,6 +285,8 @@ async function handleFormSubmit(event) {
                 divGalleryModal.appendChild(createGalleryItem(newWork, true));
             }
             alert("Travail ajouté avec succès !");
+            submitButton.classList.remove("active");
+            submitButton.disabled = true;
             resetPreview();
         } else {
             handleSubmitError(response.status);
@@ -292,7 +295,7 @@ async function handleFormSubmit(event) {
         alert("Erreur réseau. Veuillez réessayer plus tard.");
         console.error(error);
     }
-    resetPreview();
+
 }
 
 function handleSubmitError(status) {
