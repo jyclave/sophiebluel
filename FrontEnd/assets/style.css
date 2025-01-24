@@ -218,6 +218,7 @@ li:hover {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 300px;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
@@ -357,6 +358,7 @@ footer nav ul {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 160px;
   grid-row-gap: 10px;
   margin-bottom: 40px;
   margin-top: 0px;
