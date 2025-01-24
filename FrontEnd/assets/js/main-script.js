@@ -292,6 +292,7 @@ async function handleFormSubmit(event) {
         alert("Erreur réseau. Veuillez réessayer plus tard.");
         console.error(error);
     }
+    resetPreview();
 }
 
 function handleSubmitError(status) {
