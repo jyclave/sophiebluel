@@ -147,7 +147,7 @@ function resetPreview() {
     document.getElementById("form-category").value = "";
     
     const newFileInput = previewContainer.querySelector("#form-image");
-    newFileInput.addEventListener("change", handleFileChange);
+    newFileInput.addEventListener("change", handleGreyButton);
 }
 
 // Gestion de la modale
@@ -193,7 +193,7 @@ function initializeModal() {
     initializeFormHandling();
 }
 
-function handleGreyButton() {
+function initializeFormHandling() {
     const form = document.getElementById("modal-edit-work-form");
     const submitButton = document.getElementById("submit-new-work");
     const inputs = ['form-title', 'form-category', 'form-image'].map(id => document.getElementById(id));
@@ -211,7 +211,7 @@ function handleGreyButton() {
     form?.addEventListener("submit", handleFormSubmit);
 }
 
-function handleAddNewWork(event) {
+function handleFileChange(event) {
     const file = event.target.files?.[0];
     if (!file) return;
 
