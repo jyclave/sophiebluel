@@ -147,7 +147,7 @@ function resetPreview() {
     document.getElementById("form-category").value = "";
     
     const newFileInput = previewContainer.querySelector("#form-image");
-    newFileInput.addEventListener("change", handleGreyButton);
+    newFileInput.addEventListener("change", handleFileChange);
 }
 
 // Gestion de la modale
