@@ -313,6 +313,7 @@ footer nav ul {
   width: 80%;
   max-width: 630px;
   max-height: 688px;
+  min-height: 80%;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
