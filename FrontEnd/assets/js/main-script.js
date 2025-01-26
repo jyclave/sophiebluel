@@ -136,6 +136,16 @@ function addCategoryOption(category) {
     document.querySelector("select.choice-category")?.appendChild(option);
 }
 
+const formImage = document.getElementById("form-image")
+
+formImage?.addEventListener("click", e => {
+    const newFileInput = previewContainer.querySelector("#form-image");
+    newFileInput.addEventListener("change", handleFileChange);
+    console.log(formImage)
+})
+
+
+
 function resetPreview() {
     previewContainer.innerHTML = `
         <i id="photo-add-icon" class="fa-regular fa-image"></i>
