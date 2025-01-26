@@ -193,7 +193,7 @@ function initializeModal() {
     initializeFormHandling();
 }
 
-function initializeFormHandling() {
+function handleGreyButton() {
     const form = document.getElementById("modal-edit-work-form");
     const submitButton = document.getElementById("submit-new-work");
     const inputs = ['form-title', 'form-category', 'form-image'].map(id => document.getElementById(id));
@@ -211,7 +211,7 @@ function initializeFormHandling() {
     form?.addEventListener("submit", handleFormSubmit);
 }
 
-function handleFileChange(event) {
+function handleAddNewWork(event) {
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -320,6 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
     displayWorks();
     displayCategories();
     initializeModal();
+
 });
 
 
