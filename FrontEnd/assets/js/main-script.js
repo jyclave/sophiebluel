@@ -300,6 +300,9 @@ async function handleFormSubmit(event) {
             submitButton.classList.remove("active");
             submitButton.disabled = true;
             resetPreview();
+
+            modal.classList.add('hidden');
+            
         } else {
             handleSubmitError(response.status);
         }
