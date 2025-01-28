@@ -12,9 +12,10 @@ const previewContainer = document.getElementById("modal-edit-new-photo");
 // Fonction pour créer un élément de galerie
 function createGalleryItem(work, isModal = false) {
     const figure = document.createElement("figure");
-    figure.setAttribute('class', `work-item category-id-0 category-id-${work.categoryId}`);
+    figure.setAttribute('class', `work-item category-id-${work.categoryId}`);
     figure.setAttribute('id', isModal ? `work-item-modal-${work.id}` : `work-item-${work.id}`);
     figure.setAttribute('work-id', work.id);
+    console.log(divGalleryModal)
 
     const img = document.createElement("img");
     img.src = work.imageUrl;
@@ -136,6 +137,7 @@ function addCategoryOption(category) {
     document.querySelector("select.choice-category")?.appendChild(option);
 }
 
+// chargement de la photo dans le previewContainer
 const formImage = document.getElementById("form-image")
 
 formImage?.addEventListener("click", e => {
