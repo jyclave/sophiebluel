@@ -119,7 +119,8 @@ function createFilterButton(category = null) {
     filtersElement.appendChild(button);
 }
 
-// Fonctions utilitaires
+// Fonction qui permet d'afficher ou masqueer des éléments
+// de la galerie en fonction de leur catégorie.
 function filterGallery(categoryId) {
     document.querySelectorAll(".work-item").forEach(item => {
         if (categoryId === "all") {
@@ -130,6 +131,7 @@ function filterGallery(categoryId) {
     });
 }
 
+// Fonction qui permet d'ajouter dynamiquement une catégorie au menu déroulant select
 function addCategoryOption(category) {
     const option = document.createElement("option");
     option.value = category.id;
@@ -147,7 +149,8 @@ formImage?.addEventListener("click", e => {
 })
 
 
-
+//Reinitialise le formulaire d'ajout de photo et le
+//conteneur de prévisualisation à son état initial en supprimant les données saisies.
 function resetPreview() {
     previewContainer.innerHTML = `
         <i id="photo-add-icon" class="fa-regular fa-image"></i>
@@ -162,7 +165,8 @@ function resetPreview() {
     newFileInput.addEventListener("change", handleFileChange);
 }
 
-// Gestion de la modale
+// Gestion de la modale, notamment son affichage, 
+// sa fermeture et le passage entre les différents contenus de la modale.
 function initializeModal() {
     const modifyButtons = document.querySelectorAll('#top-bar, #span-top-bar');
     const closeModalButtons = modal.querySelectorAll('.close');
@@ -205,6 +209,8 @@ function initializeModal() {
     initializeFormHandling();
 }
 
+// Gestion du formulaire pour l'ajout d'un work via la modale. validation
+// des données et activation du bouton valider.
 function initializeFormHandling() {
     const form = document.getElementById("modal-edit-work-form");
     const submitButton = document.getElementById("submit-new-work");
@@ -223,6 +229,8 @@ function initializeFormHandling() {
     form?.addEventListener("submit", handleFormSubmit);
 }
 
+// Gestion du chargement du fichier en respectant les limites de taille,
+// et affiche un aperçu de l'image dans le preview container.
 function handleFileChange(event) {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -255,6 +263,9 @@ function handleFileChange(event) {
     reader.readAsDataURL(file);
 }
 
+// Fonction qui gère la soumission du formulaire ajout de travail,
+// vérification des données, appel API pour sauvegarder le projet
+// et met à jour l'interface utilisateur.
 async function handleFormSubmit(event) {
     event.preventDefault();
 
@@ -312,7 +323,8 @@ async function handleFormSubmit(event) {
     }
 
 }
-
+// Fonction qui gère les erreurs spécifiques retournées par l'API
+// et affichage de messages alerte.
 function handleSubmitError(status) {
     switch (status) {
         case 400:
