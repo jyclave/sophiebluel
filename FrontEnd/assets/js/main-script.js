@@ -110,16 +110,16 @@ function createFilterButton(category = null) {
         document.querySelectorAll(".work-filter").forEach(filter => {
             filter.classList.remove("filter-active");
         });
-        event.target.classList.add("filter-active");
+        event.target?.classList.add("filter-active");
 
         const filterId = category ? category.id : "all";
         filterGallery(filterId);
     });
 
-    filtersElement.appendChild(button);
+    filtersElement?.appendChild(button);
 }
 
-// Fonction qui permet d'afficher ou masqueer des éléments
+// Fonction qui permet d'afficher ou masquer des éléments
 // de la galerie en fonction de leur catégorie.
 function filterGallery(categoryId) {
     document.querySelectorAll(".work-item").forEach(item => {
@@ -143,8 +143,8 @@ function addCategoryOption(category) {
 const formImage = document.getElementById("form-image")
 
 formImage?.addEventListener("click", e => {
-    const newFileInput = previewContainer.querySelector("#form-image");
-    newFileInput.addEventListener("change", handleFileChange);
+    const newFileInput = previewContainer?.querySelector("#form-image");
+    newFileInput?.addEventListener("change", handleFileChange);
     console.log(formImage)
 })
 
@@ -169,16 +169,16 @@ function resetPreview() {
 // sa fermeture et le passage entre les différents contenus de la modale.
 function initializeModal() {
     const modifyButtons = document.querySelectorAll('#top-bar, #span-top-bar');
-    const closeModalButtons = modal.querySelectorAll('.close');
-    const addPhotoButton = modal.querySelector('.add-photo');
-    const modalContent = modal.querySelector('.modal-content');
-    const modalContentAddPhoto = modal.querySelector('.modal-content-add-photo');
-    const arrowModalButton = modal.querySelector('.left-arrow');
+    const closeModalButtons = modal?.querySelectorAll('.close');
+    const addPhotoButton = modal?.querySelector('.add-photo');
+    const modalContent = modal?.querySelector('.modal-content');
+    const modalContentAddPhoto = modal?.querySelector('.modal-content-add-photo');
+    const arrowModalButton = modal?.querySelector('.left-arrow');
 
     // Gestionnaires d'événements de la modale
     modifyButtons.forEach(button => {
         button.addEventListener('click', () => {
-            modal.classList.remove('hidden');
+            modal?.classList.remove('hidden');
             modalContent.style.display = 'block';
             modalContentAddPhoto.style.display = 'none';
         });
@@ -217,9 +217,9 @@ function initializeFormHandling() {
     const inputs = ['form-title', 'form-category', 'form-image'].map(id => document.getElementById(id));
 
     inputs.forEach(input => {
-        input.addEventListener("input", () => { 
+        input?.addEventListener("input", () => { 
             const isValid = inputs.every(input => 
-                input.type === 'file' ? input.files.length > 0 : input.value.trim() !== ''
+                input?.type === 'file' ? input?.files.length > 0 : input?.value.trim() !== ''
             );
             submitButton.classList.toggle("active", isValid);
             submitButton.disabled = !isValid;
@@ -308,11 +308,11 @@ async function handleFormSubmit(event) {
                 divGalleryModal.appendChild(createGalleryItem(newWork, true));
             }
             alert("Travail ajouté avec succès !");
-            submitButton.classList.remove("active");
+            submitButton?.classList.remove("active");
             submitButton.disabled = true;
             resetPreview();
 
-            modal.classList.add('hidden');
+            modal?.classList.add('hidden');
             
         } else {
             handleSubmitError(response.status);
