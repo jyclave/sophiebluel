@@ -1,4 +1,4 @@
-// Configuration
+// Configuration - variables globales
 const API_URL = "http://localhost:5678/api";
 const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4Mo
 
@@ -36,7 +36,8 @@ function createGalleryItem(work, isModal = false) {
     return figure;
 }
 
-// Fonction d'affichage des travaux
+// Fonction pour récupérer les "Works" depuis l'API et 
+// les afficher dans les deux galeries: la principale et la modale.
 function displayWorks() {
     fetch(`${API_URL}/works`)
         .then(response => response.json())
